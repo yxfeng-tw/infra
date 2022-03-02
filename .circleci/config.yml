@@ -21,9 +21,6 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!!"
-      - bridgecrew/scan:
-          directory: .
-          api-key-variable: BC_API_KEY
   bridgecrew-scan:
     executor: bridgecrew/default
     steps:
