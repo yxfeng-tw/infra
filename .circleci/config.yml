@@ -20,7 +20,7 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!!"
-      - snyk/scan
+      - snyk/scan-iac
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
