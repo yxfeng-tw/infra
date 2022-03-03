@@ -2,3 +2,8 @@ fileignoreconfig:
 - filename: .circleci/config.yml
   checksum: cdb779cfdda29ce42fdd78ca78d86f5e86246659237630e0e58234b78c1b08bc
 version: ""
+
+fileignoreconfig:
+- filename: .styra.yaml
+  checksum: 85e1125a5671ffe24aa4c936001a8c6bf7023c3d177ccc1d1c4848f582d04eca
+version: ""
