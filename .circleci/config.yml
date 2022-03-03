@@ -5,6 +5,7 @@ version: 2.1
 orbs:
   snyk: snyk/snyk@1.1.2
   bridgecrew: bridgecrew/bridgecrew@1.0.3
+  cli: styra/cli@0.0.7
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -28,12 +29,22 @@ jobs:
       - bridgecrew/scan:
           directory: .
           api-key-variable: BC_API_KEY
+  styra-policy-check:
+      executor: cli
+      steps:
+        - checkout
+        - policy-check:
+            api_token: STYRA_TOKEN
+            tenant: STYRA_TENANT
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - bridgecrew-scan
       - say-hello
+  check-workflow:
+    jobs:
+      - bridgecrew-scan
       - snyk/scan-iac
+      - styra-orb/styra-policy-check
