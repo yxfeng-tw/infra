@@ -5,7 +5,7 @@ version: 2.1
 orbs:
   snyk: snyk/snyk@1.1.2
   bridgecrew: bridgecrew/bridgecrew@1.0.3
-  cli: styra/cli@0.0.7
+  styra-orb: styra/cli@0.0.7
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
