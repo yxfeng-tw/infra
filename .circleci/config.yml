@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   snyk: snyk/snyk@1.1.2
   styra-orb: styra/cli@0.0.7
-  terraform: circleci/terraform@3.0.1
 
 jobs:
   say-hello:
@@ -15,29 +14,20 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!!"
   styra-policy-check:
-      executor: cli
-      steps:
-        - checkout
-        - policy-check:
-            api_token: STYRA_TOKEN
-            tenant: STYRA_TENANT
-  single-job-lifecycle:
-    executor: terraform/default
+    executor: cli
     steps:
       - checkout
-      - terraform/init:
-          path: .
-      - terraform/validate:
-          path: .
-      - terraform/fmt:
-          path: .
-      - terraform/plan:
-          path: .
-      - terraform/apply:
-          path: .
-      - terraform/destroy:
-          path: .
-    working_directory: ~/src
+      - policy-check:
+          api_token: STYRA_TOKEN
+          tenant: STYRA_TENANT
+  init:
+    docker:
+      - image: hashicorp/terraform:latest
+    steps:
+      - checkout
+      - run:
+          name: "Terraform Init"
+          command: "terraform init"
 
 workflows:
   say-hello-workflow:
@@ -47,6 +37,6 @@ workflows:
     jobs:
       - snyk/scan-iac
       - styra-orb/styra-policy-check
-  single-job-lifecycle:
+  terraform-workflow:
     jobs:
-      - single-job-lifecycle
+      - init
