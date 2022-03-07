@@ -30,7 +30,7 @@ jobs:
           command: |
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
-            terraform plan -out tfapply
+            terraform plan
       - persist_to_workspace:
           root: .
           paths:
