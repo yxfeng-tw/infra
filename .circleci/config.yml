@@ -20,19 +20,35 @@ jobs:
       - policy-check:
           api_token: STYRA_TOKEN
           tenant: STYRA_TENANT
-  init:
+  plan:
     docker:
-      - image: hashicorp/terraform:latest
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
       - run:
-          name: "Terraform Init"
+          name: terraform init & plan
           command: |
-            ls -all
-            cat .terraformrc
-            echo $TF_CLI_CONFIG_FILE
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
+            terraform plan -out tfapply -var-file variables.tfvars
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  apply:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: terraform
+          command: |
+            terraform apply -auto-approve tfapply
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
 workflows:
   say-hello-workflow:
@@ -44,4 +60,7 @@ workflows:
       - styra-orb/styra-policy-check
   terraform-workflow:
     jobs:
-      - init
+      - plan
+      - apply:
+          requires:
+            - plan
