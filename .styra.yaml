@@ -1,5 +1,0 @@
-checks:
-  aws_ec2:
-    system_id: a6e7cdb9748945ac9fdecdefd3bd833b
-    files:
-      - ./*.tf

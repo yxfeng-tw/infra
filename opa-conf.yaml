@@ -1,0 +1,18 @@
+discovery:
+  name: discovery
+  prefix: /systems/a6e7cdb9748945ac9fdecdefd3bd833b
+  service: styra
+labels:
+  system-id: a6e7cdb9748945ac9fdecdefd3bd833b
+  system-type: template.terraform:1.0
+services:
+- credentials:
+    bearer:
+      token: JjI9NQliYg1hISX_VCT03pzOrFNtWTLiy7LfgiZ33d8jgzcZwLvnr_Im2_wwp-IJucO_grDe8TSVTDkXJDQ9kckEpRW1JIqi
+  name: styra
+  url: https://lefl8o.svc.styra.com/v1
+- credentials:
+    bearer:
+      token: JjI9NQliYg1hISX_VCT03pzOrFNtWTLiy7LfgiZ33d8jgzcZwLvnr_Im2_wwp-IJucO_grDe8TSVTDkXJDQ9kckEpRW1JIqi
+  name: styra-bundles
+  url: https://lefl8o.svc.styra.com/v1/bundles

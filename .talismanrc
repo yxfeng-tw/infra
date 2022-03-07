@@ -1,9 +1,10 @@
 fileignoreconfig:
 - filename: .circleci/config.yml
   checksum: cdb779cfdda29ce42fdd78ca78d86f5e86246659237630e0e58234b78c1b08bc
-version: ""
-
-fileignoreconfig:
 - filename: .styra.yaml
   checksum: 85e1125a5671ffe24aa4c936001a8c6bf7023c3d177ccc1d1c4848f582d04eca
+- filename: .terraformrc
+  checksum: 06796e72d659985304f4d07968db319c33631825d8de8e9561ca3ae0b6e0e695
+- filename: opa-conf.yaml
+  checksum: 8ce6feba7bd067b30e10299585c6e5c535100f332ea3c0263b8c4b07c3389416
 version: ""

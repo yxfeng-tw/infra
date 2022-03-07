@@ -1,4 +1,11 @@
 terraform {
+  cloud {
+    organization = "yxfeng-test"
+    workspaces {
+      tags = ["infra"]
+    }
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
