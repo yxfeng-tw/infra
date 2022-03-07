@@ -31,24 +31,28 @@ jobs:
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
             terraform plan
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-  apply:
-    docker:
-      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
-    steps:
-      - attach_workspace:
-          at: .
       - run:
-          name: terraform
+          name: terraform apply
           command: |
-            terraform apply -auto-approve
+            terraform apply
       - persist_to_workspace:
           root: .
           paths:
             - .
+#  apply:
+#    docker:
+#      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+#    steps:
+#      - attach_workspace:
+#          at: .
+#      - run:
+#          name: terraform
+#          command: |
+#            terraform apply -auto-approve
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - .
 
 workflows:
   say-hello-workflow:
@@ -61,6 +65,6 @@ workflows:
   terraform-workflow:
     jobs:
       - plan
-      - apply:
-          requires:
-            - plan
+#      - apply:
+#          requires:
+#            - plan
