@@ -30,7 +30,8 @@ jobs:
           command: |
             ls -all
             cat .terraformrc
-            terraform login
+            echo $TF_CLI_CONFIG_FILE
+            export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
 
 workflows:
