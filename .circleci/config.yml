@@ -22,7 +22,7 @@ jobs:
           tenant: STYRA_TENANT
   plan:
     docker:
-      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:latest
     steps:
       - checkout
       - run:
@@ -37,7 +37,7 @@ jobs:
             - .
   apply:
     docker:
-      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:latest
     steps:
       - attach_workspace:
           at: .
@@ -46,7 +46,7 @@ jobs:
           command: |
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
-            terraform apply
+            terraform apply -auto-approve
       - persist_to_workspace:
           root: .
           paths:

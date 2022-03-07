@@ -1,5 +1,5 @@
 import "tfplan"
 
 main = rule {
-  tfplan.terraform_version is "1.1.6"
+  tfplan.terraform_version is "1.1.7"
 }
