@@ -27,7 +27,10 @@ jobs:
       - checkout
       - run:
           name: "Terraform Init"
-          command: "terraform init"
+          command: |
+            mv .terraformrc ~/.terraformrc
+            export TF_CLI_CONFIG_FILE="~/.terraformrc"
+            terraform init
 
 workflows:
   say-hello-workflow:
