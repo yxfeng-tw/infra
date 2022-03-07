@@ -29,6 +29,7 @@ jobs:
           name: "Terraform Init"
           command: |
             ls -all
+            cat .terraformrc
             mv .terraformrc ~/.terraformrc
             export TF_CLI_CONFIG_FILE="~/.terraformrc"
             terraform init
