@@ -21,32 +21,31 @@ jobs:
         - policy-check:
             api_token: STYRA_TOKEN
             tenant: STYRA_TENANT
-  jobs:
-    single-job-lifecycle:
-      executor: terraform/default
-      steps:
-        - checkout
-        - terraform/install:
-            arch: amd64
-            os: linux
-            terraform_version: 0.14.2
-        - terraform/fmt:
-            path: .
-        - terraform/validate:
-            path: .
-        - terraform/init:
-            backend: true
-            backend_config_file: backend.hcl
-            path: .
-        - terraform/plan:
-            backend_config_file: backend.hcl
-            path: .
-        - terraform/apply:
-            backend_config_file: backend.hcl
-            path: .
-        - terraform/destroy:
-            path: .
-      working_directory: .
+  single-job-lifecycle:
+    executor: terraform/default
+    steps:
+      - checkout
+      - terraform/install:
+          arch: amd64
+          os: linux
+          terraform_version: 0.14.2
+      - terraform/fmt:
+          path: .
+      - terraform/validate:
+          path: .
+      - terraform/init:
+          backend: true
+          backend_config_file: backend.hcl
+          path: .
+      - terraform/plan:
+          backend_config_file: backend.hcl
+          path: .
+      - terraform/apply:
+          backend_config_file: backend.hcl
+          path: .
+      - terraform/destroy:
+          path: .
+    working_directory: .
 
 workflows:
   say-hello-workflow:
