@@ -30,6 +30,7 @@ jobs:
           command: |
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
+            echo CIRCLE_SHA1
             terraform plan -out tfplan-CIRCLE_SHA1
       - persist_to_workspace:
           root: .
