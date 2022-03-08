@@ -30,8 +30,7 @@ jobs:
           command: |
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
-            export PLAN_NAME="tfplan-$CIRCLE_SHA1"
-            terraform plan -out=tfplan-4acdac56fc8419ee55ffcb3c2dba07a3b2432ef1
+            terraform plan
       - persist_to_workspace:
           root: .
           paths:
@@ -47,7 +46,7 @@ jobs:
           command: |
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
-            terraform apply -auto-approve "tfplan-CIRCLE_SHA1"
+            terraform apply -auto-approve
       - persist_to_workspace:
           root: .
           paths:
