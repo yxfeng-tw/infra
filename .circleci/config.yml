@@ -44,6 +44,7 @@ jobs:
       - run:
           name: terraform apply
           command: |
+            ls -all
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
             terraform apply -auto-approve
