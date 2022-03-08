@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   snyk: snyk/snyk@1.1.2
   styra-orb: styra/cli@0.0.7
+  infracost: infracost/infracost@0.8.4
 
 jobs:
   say-hello:
@@ -63,6 +64,8 @@ workflows:
   terraform-workflow:
     jobs:
       - plan
+      - infracost/infracost:
+          path: .
       - hold:
           type: approval
           requires:
