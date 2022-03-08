@@ -63,7 +63,10 @@ workflows:
   terraform-workflow:
     jobs:
       - plan
-      - apply:
+      - hold:
           type: approval
           requires:
             - plan
+      - apply:
+          requires:
+            - hold
