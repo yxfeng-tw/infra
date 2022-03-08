@@ -30,7 +30,9 @@ jobs:
           command: |
             export TF_CLI_CONFIG_FILE=./.terraformrc
             terraform init
-            terraform plan -out tfplan-$CIRCLE_SHA1
+            export PLAN_NAME="tfplan-$CIRCLE_SHA1"
+            echo $PLAN_NAME
+            terraform plan -out $PLAN_NAME
       - persist_to_workspace:
           root: .
           paths:
